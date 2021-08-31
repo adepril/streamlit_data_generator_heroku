@@ -66,12 +66,12 @@ def main():
 
 	stc.html(custom_title)
 
-	menu = ["Profile simple","Profile paramétré", "About"]
+	menu = ["Simple Profile","Parameterized Profile", "About"]
 
 	choice = st.sidebar.selectbox("Menu",menu)
 	if choice == "Profile simple":
 		st.subheader("Profile simple")
-		nbLine = st.sidebar.number_input("Nombre de ligne",10,1000)
+		nbLine = st.sidebar.number_input("Number of line",10,1000)
 		choixLocale = ["en_US","fr_FR"]
 		locale = st.sidebar.multiselect("Pays",choixLocale,default="fr_FR")
 		dataformat = st.sidebar.selectbox("Format du fichier",["csv","json"])
@@ -79,7 +79,7 @@ def main():
 		df = generate_locale_profile(nbLine,locale)
 
 		st.dataframe(df)
-		with st.beta_expander("📩: Téléchargement"):
+		with st.beta_expander("📩: Download"):
 			make_downloadable_df_format(df,dataformat)
 
 	elif choice == "Profile paramétré":
@@ -90,7 +90,7 @@ def main():
 		profile_options_list = ['username', 'name', 'sex' , 'address', 'mail' , 'birthdate','job', 'company', 'ssn', 'residence', 'current_location', 'blood_group', 'website'] 
 		profile_fields = st.sidebar.multiselect("Champs",profile_options_list,default={'name','mail'})
 
-		nbLine = st.sidebar.number_input("Nombre de ligne",5,1000)
+		nbLine = st.sidebar.number_input("Number of line",5,1000)
 		dataformat = st.sidebar.selectbox("Format du fichier",["csv","json"])
 
 		# Init Faker 
@@ -101,10 +101,10 @@ def main():
 		st.dataframe(df)
 
 		# View as JSON
-		with st.beta_expander("🔍: Vue JSON "):
+		with st.beta_expander("🔍: JSON "):
 			st.json(data)
 
-		with st.beta_expander("📩: Téléchargement"):
+		with st.beta_expander("📩: Download"):
 			make_downloadable_df_format(df,dataformat)
 		
 
