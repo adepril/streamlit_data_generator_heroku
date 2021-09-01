@@ -69,12 +69,12 @@ def main():
 	menu = ["Simple Profile","Parameterized Profile", "About"]
 
 	choice = st.sidebar.selectbox("Menu",menu)
-	if choice == "Profile simple":
-		st.subheader("Profile simple")
+	if choice == "Simple Profile":
+		st.subheader("Simple Profile")
 		nbLine = st.sidebar.number_input("Number of line",10,1000)
 		choixLocale = ["en_US","fr_FR"]
-		locale = st.sidebar.multiselect("Pays",choixLocale,default="fr_FR")
-		dataformat = st.sidebar.selectbox("Format du fichier",["csv","json"])
+		locale = st.sidebar.multiselect("Country",choixLocale,default="fr_FR")
+		dataformat = st.sidebar.selectbox("File format",["csv","json"])
 
 		df = generate_locale_profile(nbLine,locale)
 
@@ -82,16 +82,16 @@ def main():
 		with st.beta_expander("📩: Download"):
 			make_downloadable_df_format(df,dataformat)
 
-	elif choice == "Profile paramétré":
-		st.subheader("Profile paramétré")
+	elif choice == "Parameterized Profile":
+		st.subheader("Parameterized Profile")
 		choixLocale = ["en_US", "es_ES", "fr_FR", "fr_QC",  "ru_RU"]
-		locale = st.sidebar.multiselect("Pays",choixLocale,default="fr_FR")
+		locale = st.sidebar.multiselect("Country",choixLocale,default="fr_FR")
 		
 		profile_options_list = ['username', 'name', 'sex' , 'address', 'mail' , 'birthdate','job', 'company', 'ssn', 'residence', 'current_location', 'blood_group', 'website'] 
-		profile_fields = st.sidebar.multiselect("Champs",profile_options_list,default={'name','mail'})
+		profile_fields = st.sidebar.multiselect("Fields",profile_options_list,default={'name','mail'})
 
 		nbLine = st.sidebar.number_input("Number of line",5,1000)
-		dataformat = st.sidebar.selectbox("Format du fichier",["csv","json"])
+		dataformat = st.sidebar.selectbox("File format",["csv","json"])
 
 		# Init Faker 
 		custom_fake = Faker(locale)
