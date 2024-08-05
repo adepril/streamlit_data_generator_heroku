@@ -79,7 +79,7 @@ def main():
 		df = generate_locale_profile(nbLine,locale)
 
 		st.dataframe(df)
-		with st.beta_expander("📩: Download"):
+		with st.expander("📩: Download"):
 			make_downloadable_df_format(df,dataformat)
 
 	elif choice == "Parameterized Profile":
@@ -101,10 +101,10 @@ def main():
 		st.dataframe(df)
 
 		# View as JSON
-		with st.beta_expander("🔍: JSON "):
+		with st.expander("🔍: JSON "):
 			st.json(data)
 
-		with st.beta_expander("📩: Download"):
+		with st.expander("📩: Download"):
 			make_downloadable_df_format(df,dataformat)
 		
 
